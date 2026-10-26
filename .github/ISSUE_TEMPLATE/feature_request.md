@@ -1,16 +1,14 @@
 ---
 name: Feature request
-about: Suggest a feature or improvement
+about: Suggest an improvement for Apex Fitness Gym
 labels: enhancement
 ---
 
 <!--
-Describe what you'd like and where in the app it should go, with as much
-detail as you can — the clearer it is, the easier it is to build.
+Describe the outcome you want and where it should appear in the app. Include
+screenshots or a comparable product flow when useful.
 
-If another app already does it, name it or drop a screenshot. If it's your
-own idea, just describe it well. Write freely.
-
-Note: GymMane is fully offline and asks for no INTERNET permission, so
-anything needing a server, an account or cloud sync is out of scope.
+Apex is local-first. Connected features such as account, sync, sharing,
+challenges, and coaching should remain optional, privacy-conscious, and usable
+alongside the offline workout experience.
 -->

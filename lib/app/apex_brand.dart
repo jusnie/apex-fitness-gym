@@ -20,6 +20,10 @@ class ApexBrand {
   static const upstreamAuthor = 'InlitX';
   static const upstreamRepository = 'https://github.com/InlitX/GymMane';
 
+  // Public source distribution for this Apex Fitness Gym fork.
+  static const sourceRepository = 'https://github.com/jusnie/apex-fitness-gym';
+  static const sourceCredits = '$sourceRepository/blob/main/CREDITS.md';
+
   /// Required by GymMane's ADDITIONAL_TERMS.md (GPLv3 §7(b)).
   static const requiredAttribution = 'Based on GymMane by InlitX';
 }

@@ -1,83 +1,45 @@
-<div align="center">
+# Contributing to Apex Fitness Gym
 
-# Contributing to GymMane
+Thanks for helping improve Apex Fitness Gym.
 
-</div>
+## Before you begin
 
----
+- Open a pull request for focused fixes and small improvements.
+- Open an issue before starting a significant feature or architectural change.
+- Keep the local-first workout experience fast, reliable, and accessible.
+- Cloud, sharing, challenge, and coach/client work must preserve offline usability and clear user consent.
 
-## Before you start
-
-- **Bugs and small fixes:** open a pull request straight away.
-- **Anything bigger:** open an issue first so we can agree on the direction
-  before you spend an evening on it.
-- **Translations:** on [Crowdin](https://crowdin.com/project/gymmane), see
-  [TRANSLATING.md](TRANSLATING.md). Please don't send changes to the `.arb` files
-  by pull request: Crowdin overwrites them.
-
-## Two rules that never bend
-
-1. **No accounts, no logins, no remote user data.** Ever.
-2. **No network.** The app has no `INTERNET` permission and no analytics, and it
-   stays that way. A feature that needs a server is a feature GymMane won't have.
-
-Anything that keeps working on a phone in flight mode is fair game.
-
-## Getting set up
+## Set up
 
 ```bash
 flutter pub get
-flutter test          # 350+ tests, all of them should pass
+flutter analyze
+flutter test
 flutter run
 ```
 
-Requires Flutter 3.41+ (Dart 3.11+). Android only for now.
+Use the Flutter and Dart versions declared by the project tooling. Test visual changes on a physical Android device when possible.
 
-## Where things live
+## Where to work
 
-```
-lib/
-├── app/          the MaterialApp, the shell and the bottom nav
-├── catalog/      the exercise database and the body-map SVG paths
-├── l10n/         ARB translations + generated strings
-├── models/       plain data classes (exercise, workout, profile…)
-├── screens/      one file per screen
-├── services/     storage, backup/import, alarms, home-screen widgets
-├── state/        FitState, split by area (settings, library, stats, workout…)
-├── theme/        colours and text styles
-└── widgets/      shared UI pieces
+```text
+lib/app/       app identity, navigation, and shared configuration
+lib/screens/   product screens
+lib/state/     application state
+lib/services/  storage, backup, widgets, and integrations
+lib/theme/     Apex visual systems
+assets/        branded and exercise assets
+website/       Vite / React product site
 ```
 
-The exercise catalogue is `catalog/exercise_catalog.dart`, and
-`catalog/exercise_aliases.dart` is the plain list that lets people search an
-exercise by the name another app gives it — one line per exercise, add yours there.
+## Pull-request checklist
 
-`FitState` is the single source of truth. It lives in `state/fit_state.dart` and
-is split across `part` files by area, so you can work on statistics without
-scrolling past the rest of the app. `fit` is its one global instance.
+- Keep each pull request focused and explain the user impact.
+- Add or update tests for behavior changes.
+- Run `dart format` on edited Dart files.
+- Do not introduce tracking or remote behavior without an explicit, privacy-conscious product decision.
+- Do not remove the GPLv3, required fork attribution, or CC BY-SA artwork notices.
 
-## House style
+## Licensing
 
-- **No comments.** Names and structure carry the meaning; the reason for a
-  change goes in the commit message, not in the file.
-- Text the user can read **always** goes through `t.<key>` and an ARB entry —
-  never a literal in a widget. A test enforces this.
-- Prefer small widgets and pure functions. Statistics must be computed from real
-  logged sets, never estimated or faked.
-- Run `dart format` before pushing, keep `flutter analyze` clean.
-
-## Tests
-
-Add a test with your change. The suite is plain `flutter_test` and fast:
-
-```bash
-flutter test                        # everything
-flutter test test/session_test.dart # one file
-```
-
-## Pull requests
-
-- One topic per pull request.
-- Say what changed and why, and add a screenshot for anything visual.
-- By contributing you agree your work ships under the project's
-  [GPL-3.0 license](LICENSE).
+Contributions are accepted under this repository's [GPL-3.0 license](LICENSE). See [NOTICE.md](NOTICE.md), [ADDITIONAL_TERMS.md](ADDITIONAL_TERMS.md), and [CREDITS.md](CREDITS.md) for distribution requirements.

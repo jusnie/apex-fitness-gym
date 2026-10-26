@@ -30,7 +30,12 @@ class AboutScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: riseAll([
-              ScreenHeader(title: t.about, onBack: fit.backFromAbout, titleSize: 18, titleSpacing: 1),
+              ScreenHeader(
+                title: t.about,
+                onBack: fit.backFromAbout,
+                titleSize: 18,
+                titleSpacing: 1,
+              ),
               const SizedBox(height: 18),
               _hero(gc),
               const SizedBox(height: 20),
@@ -38,25 +43,46 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(height: 8),
               _group(gc, [
                 (PhosphorIconsRegular.crown, 'GYM OWNER', ApexBrand.gymOwner),
-                (PhosphorIconsRegular.facebookLogo, 'FACEBOOK PAGE', ApexBrand.facebookPage),
+                (
+                  PhosphorIconsRegular.facebookLogo,
+                  'FACEBOOK PAGE',
+                  ApexBrand.facebookPage,
+                ),
                 (PhosphorIconsRegular.code, 'DEVELOPER', ApexBrand.developer),
               ]),
               const SizedBox(height: 18),
               _sectionLabel(gc, t.whatsInside),
               const SizedBox(height: 8),
               _group(gc, [
-                (PhosphorIconsRegular.barbell, t.exercisesInside(kExercises.length), t.exercisesInsideWhy),
-                (PhosphorIconsRegular.calculator, t.calculatorsInside, t.calculatorsInsideWhy),
-                (PhosphorIconsRegular.chartLineUp, t.mathInside, t.mathInsideWhy),
+                (
+                  PhosphorIconsRegular.barbell,
+                  t.exercisesInside(kExercises.length),
+                  t.exercisesInsideWhy,
+                ),
+                (
+                  PhosphorIconsRegular.calculator,
+                  t.calculatorsInside,
+                  t.calculatorsInsideWhy,
+                ),
+                (
+                  PhosphorIconsRegular.chartLineUp,
+                  t.mathInside,
+                  t.mathInsideWhy,
+                ),
               ]),
               const SizedBox(height: 22),
               Text(
                 'Apex Fitness Gym is built for fast, focused strength training — from your first set to your next personal best.',
                 textAlign: TextAlign.center,
-                style: AppTheme.f(12.5, weight: FontWeight.w500, color: gc.textTertiary, height: 1.6),
+                style: AppTheme.f(
+                  12.5,
+                  weight: FontWeight.w500,
+                  color: gc.textTertiary,
+                  height: 1.6,
+                ),
               ),
               const SizedBox(height: 20),
-              _legalNotices(gc),
+              _legalNotices(context, gc),
             ]),
           ),
         ),
@@ -66,7 +92,12 @@ class AboutScreen extends StatelessWidget {
 
   Widget _sectionLabel(GymColors gc, String label) => Text(
     label.toUpperCase(),
-    style: AppTheme.f(10.5, weight: FontWeight.w700, color: gc.textTertiary, letterSpacing: 1.3),
+    style: AppTheme.f(
+      10.5,
+      weight: FontWeight.w700,
+      color: gc.textTertiary,
+      letterSpacing: 1.3,
+    ),
   );
 
   Widget _hero(GymColors gc) {
@@ -77,7 +108,11 @@ class AboutScreen extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color.lerp(gc.emberDeep, gc.bgRaised, 0.54)!, gc.bgRaised, gc.bg],
+          colors: [
+            Color.lerp(gc.emberDeep, gc.bgRaised, 0.54)!,
+            gc.bgRaised,
+            gc.bg,
+          ],
         ),
         border: Border.all(color: gc.border.withValues(alpha: 0.82)),
         borderRadius: BorderRadius.circular(24),
@@ -92,7 +127,12 @@ class AboutScreen extends StatelessWidget {
               height: 214,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                gradient: RadialGradient(colors: [gc.ember.withValues(alpha: 0.42), Colors.transparent]),
+                gradient: RadialGradient(
+                  colors: [
+                    gc.ember.withValues(alpha: 0.42),
+                    Colors.transparent,
+                  ],
+                ),
               ),
             ),
           ),
@@ -100,7 +140,10 @@ class AboutScreen extends StatelessWidget {
             left: 18,
             right: 18,
             top: 0,
-            child: Container(height: 2, color: gc.accent.withValues(alpha: 0.76)),
+            child: Container(
+              height: 2,
+              color: gc.accent.withValues(alpha: 0.76),
+            ),
           ),
           Positioned(
             right: 14,
@@ -140,7 +183,12 @@ class AboutScreen extends StatelessWidget {
                   'YOUR TRAINING. YOUR APEX.',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTheme.f(9.5, weight: FontWeight.w800, color: gc.accent, letterSpacing: 1.25),
+                  style: AppTheme.f(
+                    9.5,
+                    weight: FontWeight.w800,
+                    color: gc.accent,
+                    letterSpacing: 1.25,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -165,17 +213,29 @@ class AboutScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 11,
+                    vertical: 5,
+                  ),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [gc.ember.withValues(alpha: 0.28), gc.bgRaised2.withValues(alpha: 0.74)],
+                      colors: [
+                        gc.ember.withValues(alpha: 0.28),
+                        gc.bgRaised2.withValues(alpha: 0.74),
+                      ],
                     ),
-                    border: Border.all(color: gc.accent.withValues(alpha: 0.30)),
+                    border: Border.all(
+                      color: gc.accent.withValues(alpha: 0.30),
+                    ),
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Text(
                     t.version(_kVersion),
-                    style: AppTheme.f(11.5, weight: FontWeight.w700, color: gc.text),
+                    style: AppTheme.f(
+                      11.5,
+                      weight: FontWeight.w700,
+                      color: gc.text,
+                    ),
                   ),
                 ),
               ],
@@ -201,7 +261,11 @@ class AboutScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
               decoration: BoxDecoration(
                 border: i < rows.length - 1
-                    ? Border(bottom: BorderSide(color: gc.border.withValues(alpha: 0.6)))
+                    ? Border(
+                        bottom: BorderSide(
+                          color: gc.border.withValues(alpha: 0.6),
+                        ),
+                      )
                     : null,
               ),
               child: Row(
@@ -209,7 +273,10 @@ class AboutScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 1, right: 14),
-                    child: SizedBox(width: 22, child: Icon(rows[i].$1, size: 19, color: gc.accent)),
+                    child: SizedBox(
+                      width: 22,
+                      child: Icon(rows[i].$1, size: 19, color: gc.accent),
+                    ),
                   ),
                   Expanded(
                     child: Column(
@@ -217,7 +284,12 @@ class AboutScreen extends StatelessWidget {
                       children: [
                         Text(
                           rows[i].$2,
-                          style: AppTheme.f(12, weight: FontWeight.w800, color: gc.text, letterSpacing: 0.8),
+                          style: AppTheme.f(
+                            12,
+                            weight: FontWeight.w800,
+                            color: gc.text,
+                            letterSpacing: 0.8,
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Text(
@@ -240,20 +312,7 @@ class AboutScreen extends StatelessWidget {
     );
   }
 
-  Widget _legalNotices(GymColors gc) {
-    final rows = <(IconData, String, String)>[
-      (PhosphorIconsRegular.scales, 'GPLv3 ATTRIBUTION', ApexBrand.requiredAttribution),
-      (
-        PhosphorIconsRegular.githubLogo,
-        'UPSTREAM PROJECT',
-        '${ApexBrand.upstreamName} by ${ApexBrand.upstreamAuthor}',
-      ),
-      (
-        PhosphorIconsRegular.palette,
-        'EXERCISE ILLUSTRATIONS',
-        'CC BY-SA 4.0 artwork credits are retained in this app’s source distribution.',
-      ),
-    ];
+  Widget _legalNotices(BuildContext context, GymColors gc) {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
@@ -263,64 +322,203 @@ class AboutScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          for (int i = 0; i < rows.length; i++)
-            Semantics(
-              button: true,
-              link: true,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => _open(ApexBrand.upstreamRepository),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                  decoration: BoxDecoration(
-                    border: i < rows.length - 1
-                        ? Border(bottom: BorderSide(color: gc.border.withValues(alpha: 0.6)))
-                        : null,
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 14),
-                        child: SizedBox(
-                          width: 22,
-                          child: Icon(rows[i].$1, size: 19, color: gc.textSecondary),
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              rows[i].$2,
-                              style: AppTheme.f(
-                                10,
-                                weight: FontWeight.w700,
-                                color: gc.textTertiary,
-                                letterSpacing: 1.3,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              rows[i].$3,
-                              style: AppTheme.f(14.5, weight: FontWeight.w700, color: gc.text),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Icon(PhosphorIconsRegular.arrowUpRight, size: 15, color: gc.textTertiary),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+          _legalRow(
+            gc,
+            PhosphorIconsRegular.githubLogo,
+            'APEX SOURCE CODE',
+            'github.com/jusnie/apex-fitness-gym',
+            onTap: () => _openUrl(ApexBrand.sourceRepository),
+          ),
+          _legalRow(
+            gc,
+            PhosphorIconsRegular.scales,
+            'LEGAL NOTICES & CREDITS',
+            'GPLv3 · attribution · artwork licenses',
+            divider: false,
+            onTap: () => _showLegalNotices(context, gc),
+          ),
         ],
       ),
     );
   }
 
-  Future<void> _open(String url) async {
-    try {
-      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-    } catch (_) {}
+  Widget _legalRow(
+    GymColors gc,
+    IconData icon,
+    String title,
+    String detail, {
+    required VoidCallback onTap,
+    bool divider = true,
+  }) {
+    return Semantics(
+      button: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          decoration: BoxDecoration(
+            border: divider
+                ? Border(
+                    bottom: BorderSide(color: gc.border.withValues(alpha: 0.6)),
+                  )
+                : null,
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 14),
+                child: SizedBox(
+                  width: 22,
+                  child: Icon(icon, size: 19, color: gc.textSecondary),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTheme.f(
+                        10,
+                        weight: FontWeight.w700,
+                        color: gc.textTertiary,
+                        letterSpacing: 1.3,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      detail,
+                      style: AppTheme.f(
+                        14.5,
+                        weight: FontWeight.w700,
+                        color: gc.text,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                PhosphorIconsRegular.caretRight,
+                size: 15,
+                color: gc.textTertiary,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showLegalNotices(BuildContext context, GymColors gc) {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (sheetContext) => SafeArea(
+        top: false,
+        child: Container(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(sheetContext).height * 0.82,
+          ),
+          decoration: BoxDecoration(
+            color: gc.bgRaised,
+            border: Border.all(color: gc.border.withValues(alpha: 0.7)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(22, 12, 22, 28),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    width: 38,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: gc.border,
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 22),
+                Text(
+                  'LEGAL NOTICES & CREDITS',
+                  style: AppTheme.f(
+                    13,
+                    weight: FontWeight.w800,
+                    color: gc.text,
+                    letterSpacing: 1.1,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                _noticeCopy(
+                  gc,
+                  'OPEN-SOURCE ATTRIBUTION',
+                  ApexBrand.requiredAttribution,
+                ),
+                const SizedBox(height: 16),
+                _noticeCopy(
+                  gc,
+                  'LICENSE',
+                  'This app is distributed under GPLv3. Public distributions must provide complete corresponding source and retain the applicable notices.',
+                ),
+                const SizedBox(height: 16),
+                _noticeCopy(
+                  gc,
+                  'EXERCISE ARTWORK',
+                  'Exercise illustrations are credited in the Apex source and licensed under CC BY-SA 4.0.',
+                ),
+                const SizedBox(height: 20),
+                OutlinedButton.icon(
+                  onPressed: () => _openUrl(ApexBrand.sourceCredits),
+                  icon: const Icon(
+                    PhosphorIconsRegular.arrowSquareOut,
+                    size: 17,
+                  ),
+                  label: const Text('VIEW CREDITS IN APEX SOURCE'),
+                ),
+                const SizedBox(height: 8),
+                TextButton(
+                  onPressed: () => _openUrl(ApexBrand.upstreamRepository),
+                  child: const Text('VIEW UPSTREAM PROJECT'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _noticeCopy(GymColors gc, String label, String body) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: AppTheme.f(
+            10,
+            weight: FontWeight.w800,
+            color: gc.accent,
+            letterSpacing: 1.15,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          body,
+          style: AppTheme.f(
+            13.5,
+            weight: FontWeight.w500,
+            color: gc.textSecondary,
+            height: 1.45,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _openUrl(String value) async {
+    await launchUrl(Uri.parse(value), mode: LaunchMode.externalApplication);
   }
 }
