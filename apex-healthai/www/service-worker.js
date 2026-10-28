@@ -1,9 +1,11 @@
-const CACHE_NAME = 'apex-workout-local-v2';
+const CACHE_NAME = 'apex-workout-local-v3';
 const APP_SHELL = [
   './',
   './index.html',
   './style.css',
   './script.js',
+  './video-guide.js',
+  './video-index.json',
   './manifest.json',
   './vendor/fonts/fonts.css',
   './vendor/fonts/sora-latin.woff2',

@@ -11,7 +11,7 @@ const copyFile = (from, to) => {
 fs.rmSync(webDir, { recursive: true, force: true });
 fs.mkdirSync(webDir, { recursive: true });
 
-for (const file of ['index.html', 'style.css', 'script.js', 'manifest.json', 'service-worker.js']) {
+for (const file of ['index.html', 'style.css', 'script.js', 'video-guide.js', 'video-index.json', 'manifest.json', 'service-worker.js']) {
   copyFile(path.join(root, file), path.join(webDir, file));
 }
 

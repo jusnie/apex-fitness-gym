@@ -174,6 +174,24 @@
       const template = templateLibrary[key];
       return `<button class="template-card" data-start-template="${key}" type="button"><i class="ph ${template.icon}" aria-hidden="true"></i><span>${escapeHTML(template.title)}</span><small>${template.exercises.length} exercises</small></button>`;
     }).join('');
+    renderDemoLibrary();
+  }
+
+  // Every movement used by a template, with a one-tap demo video.
+  function demoMovements() {
+    const seen = new Map();
+    Object.values(templateLibrary).forEach((template) => {
+      template.exercises.forEach(([name]) => {
+        if (!seen.has(name)) seen.set(name, template.label);
+      });
+    });
+    return [...seen.entries()].map(([name, label]) => ({ name, label }));
+  }
+
+  function renderDemoLibrary() {
+    const list = $('#demo-list');
+    if (!list) return;
+    list.innerHTML = demoMovements().map(({ name, label }) => `<button class="demo-row" data-guide-exercise="${escapeHTML(name)}" type="button"><span class="demo-row__play"><i class="ph ph-play" aria-hidden="true"></i></span><span class="demo-row__body"><strong>${escapeHTML(name)}</strong><small>${escapeHTML(label)}</small></span><i class="ph ph-play-circle" aria-hidden="true"></i></button>`).join('');
   }
 
   function renderProgress() {
@@ -269,7 +287,7 @@
     const setCount = activeWorkout.exercises.reduce((sum, exercise) => sum + exercise.sets.length, 0);
     const completeCount = activeWorkout.exercises.reduce((sum, exercise) => sum + exercise.sets.filter((set) => set.complete).length, 0);
     $('#active-workout-meta').textContent = `${completeCount} of ${setCount} sets complete · ${unitLabel()} selected`;
-    $('#active-exercises').innerHTML = activeWorkout.exercises.map((exercise, exerciseIndex) => `<article class="active-exercise"><header><span>${String(exerciseIndex + 1).padStart(2, '0')}</span><div><h2>${escapeHTML(exercise.name)}</h2><p>${escapeHTML(exercise.target)}</p></div><button class="exercise-remove" data-remove-exercise="${exercise.id}" type="button" aria-label="Remove ${escapeHTML(exercise.name)}"><i class="ph ph-x" aria-hidden="true"></i></button></header><div class="set-head"><span>SET</span><span>WEIGHT (${unitLabel()})</span><span>REPS</span><span>DONE</span></div><div class="set-list">${exercise.sets.map((set, setIndex) => `<div class="set-row ${set.complete ? 'is-complete' : ''}"><span>${setIndex + 1}</span><input data-set-field="weight" data-exercise-id="${exercise.id}" data-set-id="${set.id}" inputmode="decimal" type="number" min="0" step="0.5" value="${number(set.weight)}" aria-label="Weight for set ${setIndex + 1}"><input data-set-field="reps" data-exercise-id="${exercise.id}" data-set-id="${set.id}" inputmode="numeric" type="number" min="0" max="100" value="${number(set.reps)}" aria-label="Reps for set ${setIndex + 1}"><button class="set-check ${set.complete ? 'is-complete' : ''}" data-toggle-set="${exercise.id}:${set.id}" type="button" aria-label="Mark set ${setIndex + 1} complete"><i class="ph ph-check" aria-hidden="true"></i></button></div>`).join('')}</div><button class="add-set" data-add-set="${exercise.id}" type="button"><i class="ph ph-plus" aria-hidden="true"></i> ADD SET</button></article>`).join('');
+    $('#active-exercises').innerHTML = activeWorkout.exercises.map((exercise, exerciseIndex) => `<article class="active-exercise"><header><span>${String(exerciseIndex + 1).padStart(2, '0')}</span><div><h2>${escapeHTML(exercise.name)}</h2><p>${escapeHTML(exercise.target)}</p></div><button class="exercise-guide" data-guide-exercise="${escapeHTML(exercise.name)}" type="button" aria-label="Watch demo of ${escapeHTML(exercise.name)}"><i class="ph ph-play-circle" aria-hidden="true"></i><span>DEMO</span></button><button class="exercise-remove" data-remove-exercise="${exercise.id}" type="button" aria-label="Remove ${escapeHTML(exercise.name)}"><i class="ph ph-x" aria-hidden="true"></i></button></header><div class="set-head"><span>SET</span><span>WEIGHT (${unitLabel()})</span><span>REPS</span><span>DONE</span></div><div class="set-list">${exercise.sets.map((set, setIndex) => `<div class="set-row ${set.complete ? 'is-complete' : ''}"><span>${setIndex + 1}</span><input data-set-field="weight" data-exercise-id="${exercise.id}" data-set-id="${set.id}" inputmode="decimal" type="number" min="0" step="0.5" value="${number(set.weight)}" aria-label="Weight for set ${setIndex + 1}"><input data-set-field="reps" data-exercise-id="${exercise.id}" data-set-id="${set.id}" inputmode="numeric" type="number" min="0" max="100" value="${number(set.reps)}" aria-label="Reps for set ${setIndex + 1}"><button class="set-check ${set.complete ? 'is-complete' : ''}" data-toggle-set="${exercise.id}:${set.id}" type="button" aria-label="Mark set ${setIndex + 1} complete"><i class="ph ph-check" aria-hidden="true"></i></button></div>`).join('')}</div><button class="add-set" data-add-set="${exercise.id}" type="button"><i class="ph ph-plus" aria-hidden="true"></i> ADD SET</button></article>`).join('');
   }
   function findSet(exerciseId, setId) { const exercise = activeWorkout?.exercises.find((item) => item.id === exerciseId); return { exercise, set: exercise?.sets.find((item) => item.id === setId) }; }
   function addExercise() {
@@ -333,7 +351,7 @@
     $('#clear-history').addEventListener('click', () => { if (!sessions.length || !window.confirm('Clear all completed workout history on this device?')) return; sessions = []; saveSessions(); renderAll(); showToast('Workout history cleared.'); });
     $all('.bottom-nav__item').forEach((button) => button.addEventListener('click', () => showPage(button.dataset.nav)));
     document.addEventListener('click', (event) => {
-      const target = event.target.closest('[data-start-template], [data-add-set], [data-remove-exercise], [data-toggle-set], [data-delete-meal], [data-close-sheet]');
+      const target = event.target.closest('[data-start-template], [data-add-set], [data-remove-exercise], [data-toggle-set], [data-delete-meal], [data-close-sheet], [data-guide-exercise]');
       if (!target) return;
       if (target.dataset.startTemplate) openWorkout(target.dataset.startTemplate);
       if (target.dataset.addSet && activeWorkout) { const exercise = activeWorkout.exercises.find((item) => item.id === target.dataset.addSet); if (exercise) { const last = exercise.sets[exercise.sets.length - 1]; exercise.sets.push(newSet(last?.weight || 0, exercise.target)); saveActiveWorkout(); renderActiveWorkout(); } }
@@ -341,6 +359,7 @@
       if (target.dataset.toggleSet) { const [exerciseId, setId] = target.dataset.toggleSet.split(':'); toggleSet(exerciseId, setId); }
       if (target.dataset.deleteMeal) { meals = meals.filter((meal) => meal.id !== target.dataset.deleteMeal); saveMeals(); renderFuel(); renderHome(); }
       if (target.dataset.closeSheet) closeFuel();
+      if (target.dataset.guideExercise && window.APEXVideoGuide) window.APEXVideoGuide.open(target.dataset.guideExercise);
     });
     document.addEventListener('change', (event) => { const input = event.target; if (!input.matches('[data-set-field]') || !activeWorkout) return; const { set } = findSet(input.dataset.exerciseId, input.dataset.setId); if (!set) return; set[input.dataset.setField] = Math.max(0, number(input.value)); saveActiveWorkout(); });
   }

@@ -7,12 +7,19 @@
   "scripts": {
     "start": "npm run prepare:web && node server.js",
     "dev": "npm run prepare:web && node server.js",
-    "test": "node --check script.js",
+    "test": "node --check script.js && node --check video-guide.js",
     "prepare:web": "node scripts/prepare-web.js",
     "android:sync": "npm run prepare:web && npx cap sync android",
-    "android:open": "npx cap open android"
+    "android:open": "npx cap open android",
+    "sync:videos": "node ../scripts/sync-exercise-videos.mjs"
   },
-  "keywords": ["fitness", "strength", "workout", "local-first", "offline"],
+  "keywords": [
+    "fitness",
+    "strength",
+    "workout",
+    "local-first",
+    "offline"
+  ],
   "author": "APEX Workout",
   "license": "MIT",
   "dependencies": {

@@ -84,6 +84,7 @@
       <section class="plan-hero"><p>WEEKLY RHYTHM</p><strong id="plan-frequency">4</strong><span>training days, built for consistency.</span><div class="week-dots" id="week-dots" aria-label="Training days this week"></div></section>
       <section class="page-section"><div class="section-heading"><h2>This week's sessions</h2><span class="section-count" id="plan-session-count">0 / 4</span></div><div class="plan-list" id="plan-list"></div></section>
       <section class="page-section"><div class="section-heading"><h2>Templates</h2><span class="section-count">START ANY TIME</span></div><div class="template-grid" id="template-grid"></div></section>
+      <section class="page-section"><div class="section-heading"><h2>Movement demos</h2><span class="section-count" id="demo-count">TAP TO WATCH</span></div><div class="demo-list" id="demo-list"></div></section>
     </section>
 
     <section class="app-page standard-page is-hidden" id="progress-page" data-page="progress" aria-live="polite">
@@ -112,6 +113,7 @@
   <section class="bottom-sheet is-hidden" id="fuel-sheet" aria-modal="true" role="dialog" aria-label="Daily fuel log"><div class="sheet-scrim" data-close-sheet="fuel-sheet"></div><div class="sheet-panel"><div class="sheet-handle"></div><header class="sheet-header"><div><p class="eyebrow">DAILY FUEL</p><h2>Fuel the work.</h2></div><button class="modal-back" data-close-sheet="fuel-sheet" type="button" aria-label="Close daily fuel"><i class="ph ph-x" aria-hidden="true"></i></button></header><div class="fuel-target"><span>DAILY GUIDE</span><strong id="fuel-target-value">0 kcal</strong><small id="fuel-target-detail">A flexible starting point based on your body weight.</small></div><div class="meal-log" id="meal-log"></div><form class="meal-form" id="meal-form"><label class="field"><span>MEAL OR SNACK</span><input id="meal-name" required maxlength="42" placeholder="Example: Post-workout meal"></label><label class="field"><span>ESTIMATED CALORIES</span><input id="meal-calories" required inputmode="numeric" type="number" min="1" max="5000" placeholder="0"></label><button class="button button--primary" type="submit"><span>ADD TO TODAY</span><i class="ph ph-plus" aria-hidden="true"></i></button></form></div></section>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="video-guide.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
