@@ -1,0 +1,24 @@
+# JavaScript dependencies and local build output
+node_modules/
+www/
+
+# Android/Gradle build output
+android/.gradle/
+android/build/
+android/app/build/
+
+# Local environment and editor files
+.env
+.env.*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Capacitor-generated Android web payload
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
