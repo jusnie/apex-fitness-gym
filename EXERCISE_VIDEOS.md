@@ -24,6 +24,20 @@ offline index that ships with both apps.
 Each entry keeps the `male` and `female` clip URLs plus poster thumbnails, so the UI
 can switch demonstrations without another request.
 
+## Playback is a silent looping preview
+
+Demos are shown as previews, not as a media library: **muted**, **autoplay**,
+**loop**, `playsinline`, and **no native controls** (no scrub bar or fullscreen).
+A small `LOOP` badge marks the frame. Audio is never played and the video element
+is not interactive (`pointer-events: none` on web), so a demo can never hijack a
+set mid-workout.
+
+In the web app the element carries `muted`/`autoplay` attributes and the player
+re-asserts `muted`, `defaultMuted`, `loop`, and `controls = false` before each
+`play()`, because browsers block unmuted autoplay. On native, the expo-video
+player sets `loop`, `muted`, and `volume = 0`, and `VideoView` mounts with
+`nativeControls={false}` and `allowsFullscreen={false}`.
+
 ## Refreshing the index
 
 ```bash

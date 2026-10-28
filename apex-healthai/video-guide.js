@@ -141,7 +141,8 @@
       </header>
       <div class="video-guide__body">
         <div class="video-guide__frame">
-          <video data-video-player playsinline controls loop preload="metadata" poster=""></video>
+          <video data-video-player playsinline muted autoplay loop preload="metadata" poster="" disablepictureinpicture aria-label="Looping exercise demo preview"></video>
+          <span class="video-guide__loop" data-video-loop hidden><i class="ph ph-repeat" aria-hidden="true"></i>LOOP</span>
           <div class="video-guide__skeleton" data-video-skeleton><i class="ph ph-play-circle" aria-hidden="true"></i><span>LOADING DEMO</span></div>
         </div>
         <div class="video-guide__meta">
@@ -176,6 +177,8 @@
     const skeleton = modal.querySelector('[data-video-skeleton]');
     if (!clip) {
       video.removeAttribute('src');
+      const loopBadge = modal.querySelector('[data-video-loop]');
+      if (loopBadge) loopBadge.hidden = true;
       if (skeleton) { skeleton.hidden = false; skeleton.querySelector('span').textContent = 'DEMO COMING SOON'; }
       return;
     }
@@ -184,7 +187,16 @@
       video.dataset.current = clip.url;
       video.poster = entry.thumbnails?.[clip.variant] || '';
       video.src = clip.url;
+      // Preview only: silent, looping, no controls. Muted must be set before
+      // play() or autoplay policies block the preview.
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.controls = false;
+      video.playsInline = true;
       video.load();
+      const loopBadge = modal.querySelector('[data-video-loop]');
+      if (loopBadge) loopBadge.hidden = false;
       const play = video.play();
       if (play && typeof play.catch === 'function') play.catch(() => {});
     }
@@ -200,6 +212,10 @@
     modal.querySelector('[data-video-chips]').innerHTML = '';
     const notes = modal.querySelector('[data-video-notes]');
     notes.hidden = true;
+    const loopBadge = modal.querySelector('[data-video-loop]');
+    if (loopBadge) loopBadge.hidden = true;
+    const player = modal.querySelector('[data-video-player]');
+    if (player) { player.controls = false; player.muted = true; player.loop = true; }
     const skeleton = modal.querySelector('[data-video-skeleton]');
     if (skeleton) { skeleton.hidden = false; skeleton.querySelector('span').textContent = 'LOADING DEMO'; }
     modal.classList.remove('is-hidden');
