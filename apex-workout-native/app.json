@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "APEX Workout",
+    "slug": "apex-workout",
+    "version": "0.1.0",
+    "description": "APEX Workout is a private, local-first strength and nutrition tracker.",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "apexworkout",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#050505"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.apexworkout.com"
+    },
+    "android": {
+      "package": "com.apexworkout.com",
+      "adaptiveIcon": {
+        "backgroundColor": "#050505",
+        "foregroundImage": "./assets/android-icon-foreground.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-video",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "APEX Workout uses a selected photo only for your local profile."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

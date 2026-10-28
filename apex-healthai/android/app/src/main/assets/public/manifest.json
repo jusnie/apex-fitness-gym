@@ -1,0 +1,18 @@
+{
+  "name": "APEX Workout",
+  "short_name": "APEX Workout",
+  "description": "A private, local-first strength and nutrition tracker.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/apex-mark.png",
+      "sizes": "915x915",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
